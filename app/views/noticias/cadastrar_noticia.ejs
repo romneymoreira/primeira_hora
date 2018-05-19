@@ -1,0 +1,390 @@
+<% include ../head/head.ejs %>
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <% include ../menu/menu.ejs %>
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEADER-->
+                    <!-- BEGIN PAGE HEAD -->
+                    <div class="page-head">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>Markdown & WYSIWYG Editors <small>markdown & wysiwyg editors</small></h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                        <!-- BEGIN PAGE TOOLBAR -->
+                        <div class="page-toolbar">
+                            <!-- BEGIN THEME PANEL -->
+                            <div class="btn-group btn-theme-panel">
+                                <a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-settings"></i>
+                                </a>
+                                <div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <h3>THEME</h3>
+                                            <ul class="theme-colors">
+                                                <li class="theme-color theme-color-default active" data-theme="default">
+                                                    <span class="theme-color-view"></span>
+                                                    <span class="theme-color-name">Dark Header</span>
+                                                </li>
+                                                <li class="theme-color theme-color-light" data-theme="light">
+                                                    <span class="theme-color-view"></span>
+                                                    <span class="theme-color-name">Light Header</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8 col-xs-12 seperator">
+                                            <h3>LAYOUT</h3>
+                                            <ul class="theme-settings">
+                                                <li>
+                                                    Theme Style
+                                                    <select class="layout-style-option form-control input-small input-sm">
+												<option value="square" selected="selected">Square corners</option>
+												<option value="rounded">Rounded corners</option>
+											</select>
+                                                </li>
+                                                <li>
+                                                    Layout
+                                                    <select class="layout-option form-control input-small input-sm">
+												<option value="fluid" selected="selected">Fluid</option>
+												<option value="boxed">Boxed</option>
+											</select>
+                                                </li>
+                                                <li>
+                                                    Header
+                                                    <select class="page-header-option form-control input-small input-sm">
+												<option value="fixed" selected="selected">Fixed</option>
+												<option value="default">Default</option>
+											</select>
+                                                </li>
+                                                <li>
+                                                    Top Dropdowns
+                                                    <select class="page-header-top-dropdown-style-option form-control input-small input-sm">
+												<option value="light">Light</option>
+												<option value="dark" selected="selected">Dark</option>
+											</select>
+                                                </li>
+                                                <li>
+                                                    Sidebar Mode
+                                                    <select class="sidebar-option form-control input-small input-sm">
+												<option value="fixed">Fixed</option>
+												<option value="default" selected="selected">Default</option>
+											</select>
+                                                </li>
+                                                <li>
+                                                    Sidebar Menu
+                                                    <select class="sidebar-menu-option form-control input-small input-sm">
+												<option value="accordion" selected="selected">Accordion</option>
+												<option value="hover">Hover</option>
+											</select>
+                                                </li>
+                                                <li>
+                                                    Sidebar Position
+                                                    <select class="sidebar-pos-option form-control input-small input-sm">
+												<option value="left" selected="selected">Left</option>
+												<option value="right">Right</option>
+											</select>
+                                                </li>
+                                                <li>
+                                                    Footer
+                                                    <select class="page-footer-option form-control input-small input-sm">
+												<option value="fixed">Fixed</option>
+												<option value="default" selected="selected">Default</option>
+											</select>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END THEME PANEL -->
+                        </div>
+                        <!-- END PAGE TOOLBAR -->
+                    </div>
+                    <!-- END PAGE HEAD -->
+                    <!-- BEGIN PAGE BREADCRUMB -->
+                    <ul class="page-breadcrumb breadcrumb">
+                        <li>
+                            <a href="index.html">Home</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <a href="#">UI Components</a>
+                            <i class="fa fa-circle"></i>
+                        </li>
+                        <li>
+                            <a href="#">Markdown & WYSIWYG Editors</a>
+                        </li>
+                    </ul>
+                    <!-- END PAGE BREADCRUMB -->
+                    <!-- END PAGE HEADER-->
+                    <!-- BEGIN PAGE CONTENT-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- BEGIN EXTRAS PORTLET-->
+                            <div class="portlet box blue-hoki">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="fa fa-gift"></i>Cadastro de Noticias
+                                    </div>
+                                </div>
+                                <div class="portlet-body form">
+
+                                    <% if(validacao) { %>
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                <% for(var i=0; i < validacao.length; i++) { %>
+                                                    <li>
+                                                        <%= validacao[i].msg %>
+                                                    </li>
+                                                    <% } %>
+                                            </ul>
+                                        </div>
+                                        <br>
+                                        <% } %>
+                                            <form class="form-horizontal form-bordered" id="formnoticia" action="/noticias/cadastrar" method="post" onsubmit="submit">
+                                                <div class="form-body">
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <a class="btn default pull-right" data-toggle="modal" href="#upload"><i class="fa fa-upload"> Adicionar Imagem</i></a>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Categoria</label>
+                                                                <select class="form-control" id="selCategoria" name="idCategoria">
+                                                            <option value="0">Selecione uma categoria</option>
+                                                            <% for(var i=0; i < categorias.length; i++) { %>
+                                                                <option value="<%=categorias[i].Id%>"><%=categorias[i].Descricao%></option>
+                                                            <% } %>
+                                                        </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Autor</label>
+                                                                <select class="form-control" id="selAutor" name="idAutor">
+                                                                <option value="0">Selecione um autor</option>
+                                                                <% for(var i=0; i < autores.length; i++) { %>
+                                                                    <option value="<%=autores[i].Id%>"><%=autores[i].Nome%></option>
+                                                                <% } %>
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Titulo</label>
+                                                                <input type="text" class="form-control" name="titulo" id="titulo" value="<%=noticia[0].Titulo%>" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <textarea name="corpo" id="corpo"></textarea>
+                                                            <!-- <div name="summernote_1" id="summernote_1">
+                                                            </div> -->
+                                                        </div>
+                                                        <input type="hidden" name="data" value="2018-05-16" />
+                                                        <input type="hidden" name="Id" id="Id" />
+                                                        <input type="hidden" name="status" value="A" />
+                                                        <div class="col-md-12">
+                                                            <button type="button" id="publish" class="btn green pull-right">Salvar</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PAGE CONTENT-->
+                </div>
+            </div>
+            <!-- END CONTENT -->
+            <div class="modal fade bs-modal-lg" id="upload" tabindex="-1" role="upload" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title">Inclusão de Imagens</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">Instruções</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul>
+                                                <li>
+                                                    The maximum file size for uploads in this demo is <strong>5 MB</strong> (default file size is unlimited).
+                                                </li>
+                                                <li>
+                                                    Only image files (<strong>JPG, GIF, PNG</strong>) are allowed in this demo (by default there is no file type restriction).
+                                                </li>
+                                                <li>
+                                                    Uploaded files will be deleted automatically after <strong>5 minutes</strong> (demo setting).
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <form id="fileupload" action="/upload" method="POST" enctype="multipart/form-data">
+                                        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                                        <div class="row fileupload-buttonbar">
+                                            <div class="col-lg-9">
+                                                <!-- The fileinput-button span is used to style the file input field as button -->
+                                                <span class="btn green fileinput-button">
+                                                        <i class="fa fa-plus"></i>
+                                                        <span>
+                                                        Adicionar arquivo... </span>
+                                                <input type="file" name="files">
+                                                </span>
+                                                <button type="submit" class="btn blue start">
+                                                        <i class="fa fa-upload"></i>
+                                                        <span>
+                                                        Iniciar upload </span>
+                                                        </button>
+                                                <button type="reset" class="btn warning cancel">
+                                                        <i class="fa fa-ban"></i>
+                                                        <span>
+                                                        Cancelar upload </span>
+                                                        </button>
+                                                <button type="button" class="btn red delete">
+                                                        <i class="fa fa-trash"></i>
+                                                        <span>
+                                                        Excluir </span>
+                                                        </button>
+                                                <!-- <input type="checkbox" class="toggle"> -->
+                                                <!-- The global file processing state -->
+                                                <span class="fileupload-process">
+                                                        </span>
+                                            </div>
+                                            <!-- The global progress information -->
+                                            <div class="col-lg-3 fileupload-progress fade">
+                                                <!-- The global progress bar -->
+                                                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="progress-bar progress-bar-success" style="width:0%;">
+                                                    </div>
+                                                </div>
+                                                <!-- The extended global progress information -->
+                                                <div class="progress-extended">
+                                                    &nbsp;
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- The table listing the files available for upload/download -->
+                                        <table role="presentation" class="table table-striped clearfix">
+                                            <tbody class="files">
+                                            </tbody>
+                                        </table>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+    </div>
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <script id="template-upload" type="text/x-tmpl">
+        {% for (var i=0, file; file=o.files[i]; i++) { %}
+        <tr class="template-upload fade">
+            <td>
+                <span class="preview"></span>
+            </td>
+            <td>
+                <p class="name">{%=file.name%}</p>
+                <strong class="error text-danger label label-danger"></strong>
+            </td>
+            <td>
+                <p class="size">Processing...</p>
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                </div>
+            </td>
+            <td>
+                {% if (!i && !o.options.autoUpload) { %}
+                <button class="btn blue start" disabled>
+                <i class="fa fa-upload"></i>
+                <span>Iniciar</span>
+            </button> {% } %} {% if (!i) { %}
+                <button class="btn red cancel">
+                <i class="fa fa-ban"></i>
+                <span>Cancelar</span>
+            </button> {% } %}
+            </td>
+        </tr>
+        {% } %}
+    </script>
+    <!-- The template to display files available for download -->
+    <script id="template-download" type="text/x-tmpl">
+        {% for (var i=0, file; file=o.files[i]; i++) { %}
+        <tr class="template-download fade">
+            <td>
+                <span class="preview">
+                    {% if (file.thumbnailUrl) { %}
+                        <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                    {% } %}
+                </span>
+            </td>
+            <td>
+                <p class="name">
+                    {% if (file.url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl? 'data-gallery': ''%}>{%=file.name%}</a> {% } else { %}
+                    <span>{%=file.name%}</span> {% } %}
+                </p>
+                {% if (file.error) { %}
+                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+                {% } %}
+            </td>
+            <td>
+                <span class="size">{%=o.formatFileSize(file.size)%}</span>
+            </td>
+            <td>
+                {% if (file.deleteUrl) { %}
+                <button class="btn red delete btn-sm" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
+                        <i class="fa fa-trash-o"></i>
+                        <span>Delete</span>
+                    </button>
+                <input type="checkbox" name="delete" value="1" class="toggle"> {% } else { %}
+                <button class="btn yellow cancel btn-sm">
+                        <i class="fa fa-ban"></i>
+                        <span>Cancel</span>
+                    </button> {% } %}
+            </td>
+        </tr>
+        {% } %}
+    </script>
+    <!-- BEGIN CORE PLUGINS -->
+    <!-- END CONTAINER -->
+    <% include ../footer/footer.ejs %>
+        <script type="text/javascript">
+            $("#publish").click(function() {
+                //$('#corpo').html($('#summernote_1').code());
+                $("#formnoticia").submit();
+            });
+            $(document).ready(function() {
+
+                $("#selCategoria").val('<%=noticia[0].IdCategoria%>');
+                $("#Id").val('<%=noticia[0].Id%>');
+                $("#selAutor").val('<%=noticia[0].IdAutor%>');
+                $('#corpo').html('<%=noticia[0].Corpo%>');
+
+                $('#corpo').summernote({
+                    height: 500, // set editor height
+                    minHeight: null, // set minimum height of editor
+                    maxHeight: null, // set maximum height of editor
+                    focus: true, // set focus to editable area after initializing summernote
+                });
+
+                FormFileUpload.init();
+            });
+        </script>
